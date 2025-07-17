@@ -9,10 +9,12 @@ This should help with fast prototyping, similar to Flask, a preliminary or warmu
 ## Structure
 
 - /src ... contains the source code built from the tutorial
-  - first_steps.py
-  - path_paramaters.py
-  - query_parameters.py
-  - request_body.py
+  - /user_guide
+    - 00_first_steps.py
+    - 01_path_paramaters.py
+    - 02_query_parameters.py
+    - 03_request_body.py
+    - 04_validations.py
 - .gitignore
 - README.md
 - requirements.txt ... the requirements to install with pip
