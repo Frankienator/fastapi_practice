@@ -117,3 +117,42 @@ async def read_items(
 # It then applies the validation onto our input "id".
 
 
+# Path parameters and Numeric Validations
+
+# we first need to import Path from fastapi including the afformentioned imports:
+
+from fastapi import Path
+
+@app.get("/items/{item_id}")
+async def read_item(
+    item_id: Annotated[int, Path(title="The ID of the item to get")],
+    q: Annotated[str | None, Query(alias="item-query")] = None
+):
+    results = {"item_id":item_id}
+    if q:
+        results.update({"q": q})
+    return results
+
+# Similar to the validation of query parameters, we can define metadata such as the title.
+# For validations, it is important to note that using Annotated, all validations can be added to path variables similar to query parameters, with Path().
+
+# Number validations
+# Here, we hande some simple validations for numbers.
+
+# greater than or equal:
+
+@app.get("/items/{item_id}")
+async def read_item(
+    item_id: Annotated[int, Path(title="The ID of the item to get", ge=1, le=100)] # less or equal can be used similarly or in tandem using e.g. "le=100"
+):
+    pass
+
+
+# Some more relevant values would be:
+
+# - less than: "lt=1.5"
+# - greater than: "gt=0.5"
+
+# in this example, we can see that we can use floats just like integer values.
+
+
