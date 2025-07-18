@@ -16,6 +16,7 @@ This should help with fast prototyping, similar to Flask, a preliminary or warmu
     - 03_request_body.py
     - 04_validations.py
     - 05_query_parameter_models.py
+    - 06_advanced_request_body.py
 - .gitignore
 - README.md
 - requirements.txt ... the requirements to install with pip
