@@ -102,3 +102,30 @@ async def create_item(
     results = {"item": item}
     return results
 
+
+# Body - Fields
+
+from pydantic import Field
+
+
+class AnotherItem(BaseModel):
+    name: str
+    description: str | None = Field(default=None, title="The description of the item", max_length=300)
+    price: float = Field(gt=0, description="The price must be greater than zero")
+    tax: float | None = None
+
+
+@app.put("/anotherItems/{item_id}")
+async def update_anotherItem(
+    item_id: int,
+    anotherItem: Annotated[AnotherItem, Body(embed=True)]
+):
+    results = {"item_id": item_id, "anotherItem": anotherItem}
+    return results
+
+# The Field() parameter of pydantic makes it possible for us to add metadata, defaults and pydantic-validation to our Item Model.
+# This is useful since we can handle responses accordingly then, and proper input validation within our Request Body
+# In general, Field() works just like Query(), Path() and Body().
+
+
+# Body - Nested Models
